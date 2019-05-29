@@ -14,19 +14,25 @@ var buildInclude = [
 
         // include specific files and folders
         'screenshot.png',
+        'readme.txt',
 
         // exclude files and folders
-        '!node_modules/**/*',
-        '!style.css.map',
-        '!assets/js/custom/*',
-        '!assets/css/patrials/*'
-
+        '!./composer.json', 
+        '!./composer.lock',
+        '!./gulpfile.js',
+        '!./{node_modules,node_modules/**/*}',
+        '!./package.json',
+        '!./phpcs.ruleset.xml',
+        '!./{sass,sass/**/*}',
+        '!./.stylelintrc',
+        '!./{vendor,vendor/**/*}',
+        '!svn/**'
     ];
     
 var phpSrc = [
         '**/*.php', // Include all files    
-        '!node_modules/**/*', // Exclude node_modules/
-        '!vendor/**' // Exclude vendor/    
+        '!node_modules/**/*', // Exclude node_modules
+        '!vendor/**' // Exclude vendor   
     ];
 
 var cssInclude = [
@@ -48,7 +54,8 @@ var jsInclude = [
         '!**/*.min.js',
         '!node_modules/**/*',
         '!vendor/**',
-        '!**/gulpfile.js'       
+        '!**/gulpfile.js',
+        '!**/snap.svg-min.js'       
     ];    
 
 // Load plugins
@@ -74,9 +81,10 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'), // JSHint plugin
     stylish = require('jshint-stylish'), // JSHint Stylish plugin
     stylelint = require('gulp-stylelint'), // stylelint plugin
-    phpcs = require('gulp-phpcs'); // Gulp plugin for running PHP Code Sniffer.
-    phpcbf = require('gulp-phpcbf'); // PHP Code Beautifier
-    gutil = require('gulp-util'); // gulp util
+    phpcs = require('gulp-phpcs'), // Gulp plugin for running PHP Code Sniffer.
+    phpcbf = require('gulp-phpcbf'), // PHP Code Beautifier
+    gutil = require('gulp-util'), // gulp util
+    zip = require('gulp-zip'); // gulp zip
 
 /**
  * Styles
@@ -157,23 +165,22 @@ gulp.task('lintjs', function() {
     .pipe(jshint.reporter(stylish));
 });
 
-/*
-gulp.task('scripts', function () {
-    return gulp.src('./js/*.js')
-        .pipe(concat('custom.js'))
-        .pipe(gulp.dest('./assets/js'))
+// combine scripts into one file and min it.
+gulp.task('scriptscombine', function () {
+    return gulp.src(jsInclude)
+        .pipe(concat('scripts.js'))
+        .pipe(gulp.dest('./inc/js'))
         .pipe(rename({
-            basename: "custom",
+            basename: "scripts",
             suffix: '.min'
         }))
         .pipe(uglify())
-        .pipe(gulp.dest('./assets/js/'))
+        .pipe(gulp.dest('./inc/js/'))
         .pipe(notify({
-            message: 'Custom scripts task complete',
+            message: 'Scripts combined',
             onLast: true
         }));
 });
-*/
 
 /**
  * PHP
@@ -204,16 +211,17 @@ gulp.task('phpcbf', function () {
 });
 
 // ==== TASKS ==== //
-/**
- * Gulp Default Task
- *
- * Compiles styles, watches js and php files.
- *
- */
 
-// Package Distributable - sort of
+// gulp zip
+gulp.task('zip', function () {
+  return gulp.src(buildInclude)
+    .pipe(zip('boomi-divi-builder-addons.zip'))
+    .pipe(gulp.dest('./../'));
+});  
+
+// Package Distributable
 gulp.task('build', function (cb) {
-    runSequence('styles', 'scripts', cb);
+    runSequence('styles', 'scripts', 'zip', cb);
 });
 
 // Styles task
