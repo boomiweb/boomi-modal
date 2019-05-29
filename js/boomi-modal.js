@@ -1,10 +1,13 @@
-var boomiModal = (function(){
+/* global boomiModalObject */
+
+(function(){
 	var 
 	method = {},
 	$overlay,
 	$modal,
 	$content,
-	$close;
+	$close,
+	$spinner;
 
 	// Center the modal in the viewport
 	method.center = function () {
@@ -57,7 +60,7 @@ var boomiModal = (function(){
         var content = options.content;
 
         // setup for video.
-        if (options.type == 'video') {
+        if (options.type === 'video') {
             if (options.url === '') {
                 return;
             }
@@ -67,7 +70,7 @@ var boomiModal = (function(){
             callback(content);         
         }
 
-        if (options.url != '' && content === '') {
+        if (options.url !== '' && content === '') {
             var data = {
                 'action': 'boomi_modal_url_request',
                 'security': boomiModalObject.nonce,
