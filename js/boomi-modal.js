@@ -1,6 +1,6 @@
 /* global boomiModalObject */
 
-(function() {
+var boomiModal = (function(){
     var
         method = {},
         $overlay,
