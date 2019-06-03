@@ -79,6 +79,7 @@ var gulp = require('gulp'),
     phpcs = require('gulp-phpcs'), // Gulp plugin for running PHP Code Sniffer.
     phpcbf = require('gulp-phpcbf'), // PHP Code Beautifier
     gutil = require('gulp-util'), // gulp util
+    zip = require('gulp-zip'), // gulp zip
     beautify = require('gulp-jsbeautifier');
 
 /**
