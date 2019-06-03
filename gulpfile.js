@@ -11,10 +11,11 @@ var buildInclude = [
         '**/*.eot',
         '**/*.woff',
         '**/*.woff2',
-
+        '**/*.png',
+        '**/*.txt',
+        
         // include specific files and folders
         'screenshot.png',
-        'readme.txt',
 
         // exclude files and folders
         '!./composer.json', 
@@ -54,9 +55,8 @@ var jsInclude = [
         '!**/*.min.js',
         '!node_modules/**/*',
         '!vendor/**',
-        '!**/gulpfile.js',
-        '!**/snap.svg-min.js'       
-    ];    
+        '!**/gulpfile.js'       
+    ];     
 
 // Load plugins
 var gulp = require('gulp'),
@@ -84,7 +84,8 @@ var gulp = require('gulp'),
     phpcs = require('gulp-phpcs'), // Gulp plugin for running PHP Code Sniffer.
     phpcbf = require('gulp-phpcbf'), // PHP Code Beautifier
     gutil = require('gulp-util'), // gulp util
-    zip = require('gulp-zip'); // gulp zip
+    zip = require('gulp-zip'), // gulp zip
+    beautify = require('gulp-jsbeautifier');
 
 /**
  * Styles
@@ -142,7 +143,14 @@ gulp.task('lintcss', function lintCssTask() {
         {formatter: 'string', console: true}
       ]
     }));
-});	
+});
+
+// make pretty
+gulp.task('beautifycss', () =>
+    gulp.src(cssInclude)
+        .pipe(beautify())
+        .pipe(gulp.dest('./'))
+);	
 
 /**
  * Scripts
@@ -165,22 +173,12 @@ gulp.task('lintjs', function() {
     .pipe(jshint.reporter(stylish));
 });
 
-// combine scripts into one file and min it.
-gulp.task('scriptscombine', function () {
-    return gulp.src(jsInclude)
-        .pipe(concat('scripts.js'))
-        .pipe(gulp.dest('./inc/js'))
-        .pipe(rename({
-            basename: "scripts",
-            suffix: '.min'
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest('./inc/js/'))
-        .pipe(notify({
-            message: 'Scripts combined',
-            onLast: true
-        }));
-});
+// make pretty
+gulp.task('beautifyjs', () =>
+    gulp.src(jsInclude)
+        .pipe(beautify())
+        .pipe(gulp.dest('./'))
+);
 
 /**
  * PHP
@@ -215,7 +213,7 @@ gulp.task('phpcbf', function () {
 // gulp zip
 gulp.task('zip', function () {
   return gulp.src(buildInclude)
-    .pipe(zip('boomi-divi-builder-addons.zip'))
+    .pipe(zip('boomi-modal.zip'))
     .pipe(gulp.dest('./../'));
 });  
 
