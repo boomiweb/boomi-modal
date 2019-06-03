@@ -13,22 +13,27 @@ var buildInclude = [
         '**/*.woff2',
         '**/*.png',
         '**/*.txt',
-
+        
         // include specific files and folders
         'screenshot.png',
 
         // exclude files and folders
-        '!node_modules/**/*',
-        '!style.css.map',
-        '!assets/js/custom/*',
-        '!assets/css/patrials/*'
-
+        '!./composer.json', 
+        '!./composer.lock',
+        '!./gulpfile.js',
+        '!./{node_modules,node_modules/**/*}',
+        '!./package.json',
+        '!./phpcs.ruleset.xml',
+        '!./{sass,sass/**/*}',
+        '!./.stylelintrc',
+        '!./{vendor,vendor/**/*}',
+        '!svn/**'
     ];
     
 var phpSrc = [
         '**/*.php', // Include all files    
-        '!node_modules/**/*', // Exclude node_modules/
-        '!vendor/**' // Exclude vendor/    
+        '!node_modules/**/*', // Exclude node_modules
+        '!vendor/**' // Exclude vendor   
     ];
 
 var cssInclude = [
@@ -51,7 +56,7 @@ var jsInclude = [
         '!node_modules/**/*',
         '!vendor/**',
         '!**/gulpfile.js'       
-    ];    
+    ];     
 
 // Load plugins
 var gulp = require('gulp'),
