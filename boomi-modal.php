@@ -7,7 +7,7 @@
  * Author:
  * Author URI:
  * Requires at least: 4.0
- * Tested up to: 5.1.1
+ * Tested up to: 5.2.1
  * Text Domain: boomi-modal
  *
  * @package boomi-modal

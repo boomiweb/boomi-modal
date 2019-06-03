@@ -11,6 +11,8 @@ var buildInclude = [
         '**/*.eot',
         '**/*.woff',
         '**/*.woff2',
+        '**/*.png',
+        '**/*.txt',
 
         // include specific files and folders
         'screenshot.png',
@@ -172,25 +174,6 @@ gulp.task('beautifyjs', () =>
         .pipe(gulp.dest('./'))
 );
 
-/*
-gulp.task('scripts', function () {
-    return gulp.src('./js/*.js')
-        .pipe(concat('custom.js'))
-        .pipe(gulp.dest('./assets/js'))
-        .pipe(rename({
-            basename: "custom",
-            suffix: '.min'
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest('./assets/js/'))
-        .pipe(notify({
-            message: 'Custom scripts task complete',
-            onLast: true
-        }));
-});
-*/
- 
-
 /**
  * PHP
  */
@@ -220,16 +203,17 @@ gulp.task('phpcbf', function () {
 });
 
 // ==== TASKS ==== //
-/**
- * Gulp Default Task
- *
- * Compiles styles, watches js and php files.
- *
- */
 
-// Package Distributable - sort of
+// gulp zip
+gulp.task('zip', function () {
+  return gulp.src(buildInclude)
+    .pipe(zip('boomi-modal.zip'))
+    .pipe(gulp.dest('./../'));
+});  
+
+// Package Distributable
 gulp.task('build', function (cb) {
-    runSequence('styles', 'scripts', cb);
+    runSequence('styles', 'scripts', 'zip', cb);
 });
 
 // Styles task
