@@ -1,4 +1,5 @@
 /* global boomiModalObject */
+/* jshint unused:false */
 
 var boomiModal = (function(){
     var
