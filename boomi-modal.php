@@ -3,7 +3,7 @@
  * Plugin Name: Boomi Modal
  * Plugin URI:
  * Description: A simply awesome modal popup
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author:
  * Author URI:
  * Requires at least: 4.0

@@ -12,10 +12,10 @@ var buildInclude = [
         '**/*.woff',
         '**/*.woff2',
         '**/*.png',
-        '**/*.txt',
         
         // include specific files and folders
         'screenshot.png',
+        'readme.txt',
 
         // exclude files and folders
         '!./composer.json', 
@@ -85,7 +85,8 @@ var gulp = require('gulp'),
     phpcbf = require('gulp-phpcbf'), // PHP Code Beautifier
     gutil = require('gulp-util'), // gulp util
     zip = require('gulp-zip'), // gulp zip
-    beautify = require('gulp-jsbeautifier');
+    beautify = require('gulp-jsbeautifier'),
+    cssbeautify = require('gulp-cssbeautify');
 
 /**
  * Styles
@@ -148,7 +149,7 @@ gulp.task('lintcss', function lintCssTask() {
 // make pretty
 gulp.task('beautifycss', () =>
     gulp.src(cssInclude)
-        .pipe(beautify())
+        .pipe(cssbeautify())
         .pipe(gulp.dest('./'))
 );	
 
