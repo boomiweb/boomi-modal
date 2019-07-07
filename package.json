@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/erikdmitchell/boomi-modal#readme",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-cache": "^1.1.2",
     "gulp-concat": "^2.6.1",
@@ -38,7 +38,7 @@
     "gulp-run-sequence": "",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "",
-    "gulp-stylelint": "^5.0.0",
+    "gulp-stylelint": "^9.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-uglifycss": "",
     "gulp-util": "",
