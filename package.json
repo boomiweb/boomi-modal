@@ -20,8 +20,9 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
-    "gulp-cache": "^1.0.2",
+    "gulp-cache": "^1.1.2",
     "gulp-concat": "^2.6.1",
+    "gulp-cssbeautify": "^1.0.1",
     "gulp-filter": "^5.1.0",
     "gulp-ignore": "^2.0.2",
     "gulp-imagemin": "",
@@ -31,9 +32,9 @@
     "gulp-newer": "",
     "gulp-notify": "",
     "gulp-phpcbf": "^0.1.2",
-    "gulp-phpcs": "^2.1.0",
-    "gulp-plumber": "^1.1.0",
-    "gulp-rename": "^1.2.2",
+    "gulp-phpcs": "^2.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^1.4.0",
     "gulp-run-sequence": "",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "",
@@ -46,6 +47,8 @@
     "jshint-stylish": ""
   },
   "dependencies": {
+    "gulp-imagemin": "^6.0.0",
+    "gulp-load-plugins": "^2.0.0",
     "gulp-sourcemaps": "^2.6.5"
   }
 }
