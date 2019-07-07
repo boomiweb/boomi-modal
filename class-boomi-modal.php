@@ -117,7 +117,9 @@ final class Boomi_Modal {
         wp_register_script( 'boomi-modal-script', BOOMI_MODAL_URL . 'js/boomi-modal.min.js', array( 'jquery' ), BOOMI_MODAL_VERSION, true );
 
         wp_localize_script(
-            'boomi-modal-script', 'boomiModalObject', array(
+            'boomi-modal-script',
+            'boomiModalObject',
+            array(
                 'ajaxURL' => admin_url( 'admin-ajax.php', 'relative' ),
                 'nonce' => wp_create_nonce( 'bmur' ),
                 'path' => BOOMI_MODAL_PATH,
