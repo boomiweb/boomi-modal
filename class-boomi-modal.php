@@ -20,7 +20,7 @@ final class Boomi_Modal {
      * @var string
      * @access public
      */
-    public $version = '1.1.0';
+    public $version = '1.2.0';
 
     /**
      * The single instance
